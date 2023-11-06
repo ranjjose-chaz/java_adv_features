@@ -14,6 +14,8 @@ import java.util.List;
 
 public class Main {
 
+    private static final String FILE_PATH = "C:/Users/chazr/Downloads/July 21 CLE - Swiss Re.xlsx";
+
     public static void main(String[] args) throws IOException {
 
         //To maintain the list of rows fetched from the Excel file in the Object format
@@ -21,7 +23,7 @@ public class Main {
 
         //Load the Excel file
         Workbook workbook = WorkbookFactory.create(
-                new FileInputStream("C:/Users/chazr/Downloads/July 21 CLE - Swiss Re.xlsx"));
+                new FileInputStream(FILE_PATH));
 
         Sheet wopSheet = workbook.getSheet("WOP");
         extractRowData(180, 344, wopSheet, dataList, true);
@@ -59,9 +61,9 @@ public class Main {
         }
     }
 
-    // record is a new `type` available in Java (from Java14 version). record is an easier way to define a class.
-    // If you use the keyword record instead of class, it automatically creates constructor, getters
-    // and implement a bunch of overridden methods from Object class like (toString, equals, hashcode, etc.).
+    // record is a new `type` available in Java (from Java14 version). record is an easier way to define
+    // an immutable class. If you use the keyword record instead of class, it automatically creates constructor,
+    // getters and implement a bunch of overridden methods from Object class like (toString, equals, hashcode, etc.).
     // So here I just create a class called WOP where I have instance variables representing various columns.
     // I will use this class to hold data from the Excel file and will later on write it into a fixed length file.
     record WOP(String planId, String clientName, String forename, Date dob, Date dateNotified,
