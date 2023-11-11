@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Main {
+public class SampleExcelOp {
 
     private static final String FILE_PATH = "C:/Users/chazr/Downloads/July 21 CLE - Swiss Re.xlsx";
 
