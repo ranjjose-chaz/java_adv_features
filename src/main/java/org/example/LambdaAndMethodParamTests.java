@@ -4,9 +4,33 @@ import org.example.functionalinterfaces.MathBiOperation;
 import org.example.functionalinterfaces.MathTriOperation;
 import org.example.functionalinterfaces.MathUniOperation;
 
+class H {
+
+}
+
 public class LambdaAndMethodParamTests {
 
+
+    private static H test(H h){
+        System.out.println(h);
+        return h;
+    }
+
+    private static <R, S> S test1(R h) {
+        S s = null;
+        Integer i = null;
+        i.toString();
+
+        System.out.println(h);
+        return s;
+    }
+
+
+
     public static void main(String[] args) {
+
+        test1(5);
+
 
         performUniOperation(2, (x) -> x*10);
         performBiOperation(2,5, (x,y) -> x*y);
