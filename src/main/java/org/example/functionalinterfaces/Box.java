@@ -22,10 +22,16 @@ public class Box<T> {
 
     public static void main(String[] args) {
 
-        B b1 = new B() {};
-        B b2 = new B() {};
+        B b1 = new B() {
+            @Override
+            public void m1() {
+
+            }
+        };
+        B b2 = () -> System.out.println("blah blah");
+
         List<B> bList1 = results(b1, b2);
-        List<A> bList2 = results2(new B(){}, new B(){});
+        List<A> bList2 = results2(b1, b2);
 
         System.out.println("test");
 
@@ -41,6 +47,7 @@ public class Box<T> {
 
     }
 
+
     public static List<A> results2(A t1, A t2){
         List<A> list = new ArrayList<>();
         list.add(t1);
@@ -49,11 +56,23 @@ public class Box<T> {
     }
 
 
+    public static <T extends A> T results3(T t){
+        t.m1();
+        return t;
+    }
+
+
 
 }
 
-interface A {}
+interface A {
+    void m1();
+}
 
-interface B extends A {}
+interface B extends A {
 
-class C {}
+}
+
+class C {
+
+}
