@@ -103,9 +103,6 @@ class Utility {
         return List.of(tArr);
     }
 
-    /*static <T> List<? super C> lowerBoundSample(T[] tArr) {
-        return List.of(tArr);
-    }*/
 }
 
 interface C extends B {}
