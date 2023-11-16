@@ -1,7 +1,15 @@
 package org.example.functionalinterfaces;
 
+import org.apache.commons.math3.fraction.Fraction;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+
+import static org.apache.commons.math3.fraction.Fraction.*;
+import static org.apache.commons.math3.fraction.Fraction.ONE_FIFTH;
+import static org.apache.commons.math3.fraction.Fraction.THREE_FIFTHS;
 
 public class Box<T> {
 
@@ -48,6 +56,8 @@ public class Box<T> {
     }
 
 
+
+
     public static List<A> results2(A t1, A t2){
         List<A> list = new ArrayList<>();
         list.add(t1);
@@ -73,6 +83,32 @@ interface B extends A {
 
 }
 
-class C {
 
+class Utility {
+
+    public static void main(String[] args) {
+
+        //All these works as all these Lists are made up of Objects extending java.lang.Number
+        System.out.println(Collections.max(getList(new Integer[] {1,2,3,4,5})));
+        System.out.println(Collections.max(getList(new Double[] {1.1, 2.2, 3.3,4.4,5.5})));
+        System.out.println(Collections.max(getList(new Fraction[]{ONE_FIFTH, THREE_FIFTHS, ONE_THIRD})));
+
+        //This is invalid because Object A is not a 'Number'
+        //List<A> aList = getList(new A[] {() -> {}, () -> {}})
+
+
+
+    }
+    static <T extends Number> List<T> getList(T[] tArr) {
+        return List.of(tArr);
+    }
+
+    /*static <T> List<? super C> lowerBoundSample(T[] tArr) {
+        return List.of(tArr);
+    }*/
 }
+
+interface C extends B {}
+
+interface D extends C {}
+
