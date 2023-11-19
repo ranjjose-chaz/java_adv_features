@@ -96,6 +96,34 @@ class Utility {
         //This is invalid because Object A is not a 'Number'
         //List<A> aList = getList(new A[] {() -> {}, () -> {}})
 
+        List<Animal> animals = new ArrayList<>();
+        List<Cat> cats = new ArrayList<>();
+        List<Tiger> tigers = new ArrayList<>();
+        List<SiberianTiger> siberianTigers = new ArrayList<>();
+        List<Dog> dogs = new ArrayList<>();
+        List<Dingo> dingos = new ArrayList<>();
+        List<CreamyWhiteDingo> creamyWhiteDingos = new ArrayList<>();
+        List<? extends Animal> AnimalExts= new ArrayList<Cat>();
+
+
+        //ext(animals);
+        ext(cats); // works because List<Cat> conforms to List<? extends Cat>
+        ext(tigers); // works because List<Tiger> conforms to List<? extends Cat>
+        ext(siberianTigers); // works because List<SiberianTiger>
+                             // conforms to List<? extends Cat>
+        //ext(dogs);        // fails because List<Dog> doesn't confirm to
+                            // List<? extends Cat>
+
+        sup(animals);   // works because Animal in List<Animal> is a super class of
+                        // Tiger in List<? super Tiger>
+        sup(cats);      // works because Cat in List<Cat> is a super class of
+                        // Tiger in List<? super Tiger>
+        sup(tigers);    // works because Tiger in List<Tiger> is a super class of
+                        // Tiger in List<? super Tiger>. This is a special case.
+        // sup(siberianTigers);    // fails because SiberianTiger in List<SiberianTiger> isn't a super class of
+                                // Tiger in List<? super Tiger>
+        // sup(dogs);   // fails because Dog in List<Dogs> isn't a super class of
+                        // Tiger in List<? super Tiger>
 
 
     }
@@ -103,9 +131,44 @@ class Utility {
         return List.of(tArr);
     }
 
+    /**
+     * This method can take any List of type Cat or its subclasses.
+     * @param catExts List<? extends Cat > any <code>List<code/> with a type that <code>is-a-Cat<code/>
+     */
+    static void ext(List<? extends Cat > catExts) {
+        List<? extends Tiger> cats1 = new ArrayList<>();
+        //catExts.add(new Cat());
+
+    }
+
+    /**
+     * This method can take any List of type Tiger  or its super classes.
+     * @param tigerSuprs List<? super Tiger> any List with a type that's Tiger
+     *                   or any of its super classes
+     */
+    static void sup(List<? super Tiger> tigerSuprs) {
+        tigerSuprs.add(new Tiger());
+        tigerSuprs.add(new SiberianTiger());
+
+    }
+
 }
 
 interface C extends B {}
 
 interface D extends C {}
+
+class Animal {}
+class Cat extends Animal {}
+class Tiger extends Cat {}
+class SiberianTiger extends Tiger {}
+
+
+
+class Dog extends Animal{}
+class Dingo extends Dog {}
+class CreamyWhiteDingo extends Dingo {}
+
+
+
 
